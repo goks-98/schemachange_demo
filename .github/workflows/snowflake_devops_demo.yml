@@ -19,14 +19,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Set up Python
-        uses: actions/setup-python@v2.0.0
+        uses: actions/setup-python@v2.2.1
         with:
           python-version: '3.8'
       - name: install requirements
         run: pip install -r requirements.txt
       - name: run snowpark
         run: python *.py
-        
+
   deploy-snowflake-changes-job:
     runs-on: ubuntu-latest
 
