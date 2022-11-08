@@ -12,6 +12,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  snowpark_api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2.0.0
+        with:
+          python-version: '3.8'
+      - name: install requirements
+        run: pip install -r requirements.txt
+      - name: run snowpark
+        run: python *.py
+        
   deploy-snowflake-changes-job:
     runs-on: ubuntu-latest
 
@@ -36,8 +51,8 @@ jobs:
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
-          echo "Step 1: Installing schemachange"
-          pip install schemachange
+          echo "Step 1: Installing schemachange & requirements"
+          pip install schemachange && pip install -r requirements.txt
           
           echo "Step 2: Running schemachange"
           schemachange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_USER_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
