@@ -42,4 +42,4 @@ snowflake_df = df_pd.merge(weather_df, how='inner', on='W_ZIP')
 
 snowflake_df_1 = session.create_dataframe(snowflake_df)
 #Writing table to snowflake
-snowflake_df_1.write.mode("overwrite").save_as_table("w_warehouse_weather")
+snowflake_df_1.write.mode("overwrite").save_as_table("SCM_PROD.CONFORMED.w_warehouse_weather")
