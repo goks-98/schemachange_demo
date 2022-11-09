@@ -19,7 +19,7 @@ def run(session, from_table, join_table, to_table):
                                     DATE_INSERT
                                  )
                         SELECT C_CUSTOMER_SK
-                                    , TO_CHAR(D_DATE, ''YYYYMMDD'')
+                                    , TO_CHAR(D_DATE, 'YYYYMMDD')
                                     , C_SALUTATION
                                     , C_FIRST_NAME
                                     , C_LAST_NAME
